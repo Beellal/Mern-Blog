@@ -1,23 +1,23 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import userRoutes from './routes/user.route.js';
 
 dotenv.config();
-//Connecter la base de donner mangodb
-mongoose.connect(process.env.MONGO)
-    .then(
-        () => { console.log('') }
-    )
-    .catch((err) => console.error(err));
 
+// Connecter à la base de données MongoDB
+mongoose.connect(process.env.MONGO)
+    .then(() => {
+        console.log('Connected to MongoDB');
+    })
+    .catch((err) => {
+        console.error('Error connecting to MongoDB:', err);
+    });
 
 const app = express();
 
 app.listen(3000, () => {
-    console.log('');
-})
-
-app.get( '/', (req, res) => {
-    //Renvoi du message
-    res.json({message : 'API is working'})
+    console.log('Server is running on port 3000');
 });
+
+app.use('/api/user', userRoutes);
