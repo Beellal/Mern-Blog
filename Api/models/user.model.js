@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { emit } from "nodemon";
+
 
 const userSchema = new mongoose.Schema({
     username: {
